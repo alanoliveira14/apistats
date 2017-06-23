@@ -33,6 +33,8 @@
         </property>
     </bean>
 
+    <bean class="br.com.apistats.database.ConexaoMySQL" />    
+	<bean class="br.com.apistats.models.JogadorModel" />		
 	
 	<!-- 
 	<mvc:annotation-driven>
