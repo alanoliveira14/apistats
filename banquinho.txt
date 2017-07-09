@@ -1,0 +1,182 @@
+CREATE DATABASE `bdagencia1` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+CREATE TABLE `acao` (
+  `codAcao` int(11) NOT NULL AUTO_INCREMENT,
+  `nomeAcao` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`codAcao`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `acaopartida` (
+  `codAcaoPartida` int(11) NOT NULL AUTO_INCREMENT,
+  `codPartida` int(11) DEFAULT NULL,
+  `codJogador` int(11) DEFAULT NULL,
+  `codAcao` int(11) DEFAULT NULL,
+  `tempo` time DEFAULT NULL,
+  `statusAcao` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`codAcaoPartida`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `advcamp` (
+  `codCampeonato` int(11) DEFAULT NULL,
+  `codTimeAdv` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `campeonato` (
+  `codCampeonato` int(11) NOT NULL,
+  `nome` varchar(45) DEFAULT NULL,
+  `codModo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`codCampeonato`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `cidade` (
+  `codCidade` int(11) NOT NULL AUTO_INCREMENT,
+  `nomeCidade` varchar(45) DEFAULT NULL,
+  `codPais` int(11) DEFAULT NULL,
+  PRIMARY KEY (`codCidade`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='				';
+
+CREATE TABLE `clubcamp` (
+  `codCampeonato` int(11) NOT NULL AUTO_INCREMENT,
+  `codClube` int(11) DEFAULT NULL,
+  PRIMARY KEY (`codCampeonato`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='	';
+
+CREATE TABLE `clube` (
+  `codClube` int(11) NOT NULL AUTO_INCREMENT,
+  `nomeCompleto` varchar(255) DEFAULT NULL,
+  `alcunha` varchar(255) DEFAULT NULL,
+  `sigla` varchar(45) DEFAULT NULL,
+  `imagem` varchar(255) DEFAULT NULL,
+  `codTecnico` int(11) DEFAULT NULL,
+  `codPais` int(11) DEFAULT NULL,
+  `dataFundacao` date DEFAULT NULL,
+  `vitoria` int(11) DEFAULT NULL,
+  `derrota` int(11) DEFAULT NULL,
+  `empate` int(11) DEFAULT NULL,
+  PRIMARY KEY (`codClube`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `detalhepartida` (
+  `codPartida` int(11) DEFAULT NULL,
+  `codAcao` int(11) DEFAULT NULL,
+  `quantidade` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `escalacao` (
+  `codEscalacao` int(11) NOT NULL AUTO_INCREMENT,
+  `codClube` int(11) DEFAULT NULL,
+  `codEsqTatico` int(11) DEFAULT NULL,
+  `codPartida` int(11) DEFAULT NULL,
+  PRIMARY KEY (`codEscalacao`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `escalacaoadv` (
+  `codEscalacaoAdv` int(11) NOT NULL AUTO_INCREMENT,
+  `codEsqTatitco` int(11) DEFAULT NULL,
+  `codTimeAdversario` int(11) DEFAULT NULL,
+  `codPartida` int(11) DEFAULT NULL,
+  PRIMARY KEY (`codEscalacaoAdv`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `esqtatico` (
+  `codEsqTatico` int(11) NOT NULL AUTO_INCREMENT,
+  `variacaoEsqTatico` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`codEsqTatico`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `estadio` (
+  `codEstadio` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) DEFAULT NULL,
+  `codClube` int(11) DEFAULT NULL,
+  `imagem` varchar(255) DEFAULT NULL,
+  `codCidade` int(11) DEFAULT NULL,
+  PRIMARY KEY (`codEstadio`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `estilocampeonato` (
+  `codModo` int(11) NOT NULL AUTO_INCREMENT,
+  `modoDisputa` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`codModo`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `jogador` (
+  `codJogador` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) DEFAULT NULL,
+  `apelido` varchar(255) DEFAULT NULL,
+  `clube` varchar(45) DEFAULT NULL,
+  `posicao` varchar(45) DEFAULT NULL,
+  `pePredom` varchar(1) DEFAULT NULL,
+  `dataNascimento` date DEFAULT NULL,
+  `altura` varchar(45) DEFAULT NULL,
+  `peso` varchar(45) DEFAULT NULL,
+  `imagem` varchar(255) DEFAULT NULL,
+  `imgPerfil` varchar(255) DEFAULT NULL,
+  `codClube` int(11) DEFAULT NULL,
+  `codPais` int(11) DEFAULT NULL,
+  `codPosicao` int(11) DEFAULT NULL,
+  `ativo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`codJogador`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `pais` (
+  `codPais` int(11) NOT NULL AUTO_INCREMENT,
+  `pais` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`codPais`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `partida` (
+  `codPartida` int(11) NOT NULL AUTO_INCREMENT,
+  `dataPartida` date DEFAULT NULL,
+  `horario` time DEFAULT NULL,
+  `situacao` varchar(45) DEFAULT NULL,
+  `codEstadio` int(11) DEFAULT NULL,
+  `codClube` int(11) DEFAULT NULL,
+  `codAdversario` int(11) DEFAULT NULL,
+  `codCampeonato` int(11) DEFAULT NULL,
+  `codRodada` int(11) DEFAULT NULL,
+  PRIMARY KEY (`codPartida`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `posicao` (
+  `codPosicao` int(11) NOT NULL AUTO_INCREMENT,
+  `nomePosicao` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`codPosicao`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `relacionados` (
+  `codEscalacao` int(11) DEFAULT NULL,
+  `codJogador` int(11) DEFAULT NULL,
+  `situacao` varchar(45) DEFAULT NULL,
+  `obs` varchar(45) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `relacionadosadv` (
+  `codEscalacaoAdv` int(11) DEFAULT NULL,
+  `codJogador` int(11) DEFAULT NULL,
+  `situacao` varchar(45) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `rodada` (
+  `codRodada` int(11) DEFAULT NULL,
+  `rodada` varchar(45) DEFAULT NULL,
+  `codCampeonato` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `tecnico` (
+  `codTecnico` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) DEFAULT NULL,
+  `dataNascimento` date DEFAULT NULL,
+  `apelido` varchar(255) DEFAULT NULL,
+  `codPais` int(11) DEFAULT NULL,
+  PRIMARY KEY (`codTecnico`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `timeadversario` (
+  `codTimeAdversario` int(11) NOT NULL AUTO_INCREMENT,
+  `nomeComp` varchar(255) DEFAULT NULL,
+  `alcunha` varchar(255) DEFAULT NULL,
+  `sigla` varchar(45) DEFAULT NULL,
+  `imagem` varchar(255) DEFAULT NULL,
+  `codPais` int(11) DEFAULT NULL,
+  PRIMARY KEY (`codTimeAdversario`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
