@@ -13,7 +13,8 @@ public class Jogador {
 	private String peso;
 	private String imgOficial;
 	private String imgPerfil;
-	private String	peFavorito;
+	private String peFavorito;
+	private String nacionalidade;
 	
 	public int getIdJogador() {
 		return idJogador;
@@ -80,6 +81,12 @@ public class Jogador {
 	}
 	public void setPeFavorito(String peFavorito) {
 		this.peFavorito = peFavorito;
+	}
+	public String getNacionalidade() {
+		return nacionalidade;
+	}
+	public void setNacionalidade(String nacionalidade) {
+		this.nacionalidade = nacionalidade;
 	}
 	
 }

@@ -17,7 +17,7 @@ public class JogadorModel extends GenericDAO{
     
     public List<Jogador> getJogadores() throws SQLException, RegistroNaoEncontradoException {
 		
-		String sql = "select * from jogador;";		
+		String sql = "select codJogador, nome, apelido,  c.alcunha, po.nomePosicao, pePredom, dataNascimento, altura, peso, j.imagem, imgPerfil, p.pais from jogador j inner join pais p inner join posicao po inner join clube c where j.codPais = p.codPais and j.codPosicao = po.codPosicao and j.codClube = c.codClube;";		
 		ResultSet rs;
 		
 		rs = super.executeResultSet(sql);
@@ -37,6 +37,7 @@ public class JogadorModel extends GenericDAO{
 			jogador.setPeso(rs.getString(9));
 			jogador.setImgOficial(rs.getString(10));
 			jogador.setImgPerfil(rs.getString(11));
+			jogador.setNacionalidade(rs.getString(12));
 			jogadores.add(jogador);			
 		} 
 		
