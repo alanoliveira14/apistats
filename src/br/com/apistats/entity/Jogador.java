@@ -8,13 +8,17 @@ public class Jogador {
 	private String nomeCamisa;	
 	private String clube;
 	private String posicao;
-	private Date dataNascimento;
+	private String dataNascimento;
 	private String altura;
 	private String peso;
 	private String imgOficial;
 	private String imgPerfil;
 	private String peFavorito;
 	private String nacionalidade;
+	private int codClube;
+	private int codPais;
+	private int codPosicao;
+	private int ativo;	
 	
 	public int getIdJogador() {
 		return idJogador;
@@ -46,10 +50,10 @@ public class Jogador {
 	public void setPosicao(String posicao) {
 		this.posicao = posicao;
 	}
-	public Date getDataNascimento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 	public String getAltura() {
@@ -87,6 +91,30 @@ public class Jogador {
 	}
 	public void setNacionalidade(String nacionalidade) {
 		this.nacionalidade = nacionalidade;
+	}
+	public int getCodPais() {
+		return codPais;
+	}
+	public void setCodPais(int codPais) {
+		this.codPais = codPais;
+	}
+	public int getCodPosicao() {
+		return codPosicao;
+	}
+	public void setCodPosicao(int codPosicao) {
+		this.codPosicao = codPosicao;
+	}
+	public int getCodClube() {
+		return codClube;
+	}
+	public void setCodClube(int codClube) {
+		this.codClube = codClube;
+	}
+	public int getAtivo() {
+		return ativo;
+	}
+	public void setAtivo(int ativo) {
+		this.ativo = ativo;
 	}
 	
 }

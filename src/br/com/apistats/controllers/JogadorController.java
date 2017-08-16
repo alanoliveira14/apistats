@@ -4,6 +4,7 @@ import br.com.apistats.database.ConexaoMySQL;
 import br.com.apistats.entity.Jogador;
 import br.com.apistats.exceptions.DadoImportanteInvalidoException;
 import br.com.apistats.models.JogadorModel;
+import br.com.apistats.ResultadoOperacaoAPI;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -37,5 +38,59 @@ public class JogadorController {
 		List<Jogador> jogadores = jogadorModel.getJogadores();
 			
 		return new ResponseEntity<List<Jogador>>(jogadores, HttpStatus.OK);
+	}
+	
+	@RequestMapping(
+			value = "/jogador",
+			method = RequestMethod.POST,
+			produces = "application/json;charset=UTF-8")
+	@ResponseBody	
+	public ResultadoOperacaoAPI inserir(@RequestBody Jogador jogador) throws Exception {
+		
+			try{
+				jogadorModel.inserir(jogador);
+			}
+			catch(Exception e){
+				return new ResultadoOperacaoAPI(e.getMessage(), false);
+			}		
+		return new ResultadoOperacaoAPI ("Jogador inserido com sucesso!", true);
+	}
+	
+	@RequestMapping(
+			value = "/jogador/{idJogador}",
+			method = RequestMethod.GET,
+			produces = "application/json;charset=UTF-8")
+	@ResponseBody	
+	public ResponseEntity<Jogador> getRegra(@PathVariable Integer idJogador) throws Exception {
+		
+		Jogador jogador = new Jogador();
+		
+			try{
+				jogador.setIdJogador(idJogador);
+				jogador = jogadorModel.getJogadorById(jogador.getIdJogador());
+			}
+			catch(Exception e){
+				return new ResponseEntity<Jogador>(jogador, HttpStatus.BAD_REQUEST);
+			}
+		
+		return new ResponseEntity<Jogador>(jogador, HttpStatus.OK);
+	}
+	
+	@RequestMapping(
+			value = "/jogador/{idJogador}",
+			method = RequestMethod.PUT,
+			produces = "application/json;charset=UTF-8")
+	@ResponseBody	
+	public ResultadoOperacaoAPI atualizar(@PathVariable Integer idJogador, @RequestBody Jogador jogador) throws Exception {
+		
+			try{
+				jogador.setIdJogador(idJogador);
+				jogadorModel.atualizar(jogador);
+			}
+			catch(Exception e){
+				return new ResultadoOperacaoAPI(e.getMessage(), false);
+			}
+					
+		return new ResultadoOperacaoAPI ("Jogador atualizado com sucesso!", true);
 	}
 }
