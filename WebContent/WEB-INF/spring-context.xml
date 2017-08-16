@@ -34,7 +34,8 @@
     </bean>
 
     <bean class="br.com.apistats.database.ConexaoMySQL" />    
-	<bean class="br.com.apistats.models.JogadorModel" />		
+	<bean class="br.com.apistats.models.JogadorModel" />	
+	<bean class="br.com.apistats.models.ClubeModel" />		
 	
 	<!-- 
 	<mvc:annotation-driven>
