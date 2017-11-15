@@ -93,4 +93,53 @@ public class JogadorController {
 					
 		return new ResultadoOperacaoAPI ("Jogador atualizado com sucesso!", true);
 	}
+
+	@RequestMapping(	
+			value = "/jogador/goleiros",
+			method = RequestMethod.GET,
+			produces = "application/json;charset=UTF-8")
+	@ResponseBody	
+	public ResponseEntity<List<Jogador>> goleiros() throws Exception {
+		
+		List<Jogador> goleiros = jogadorModel.getGoleiros();
+			
+		return new ResponseEntity<List<Jogador>>(goleiros, HttpStatus.OK);
+	}
+
+	@RequestMapping(	
+			value = "/jogador/defensores",
+			method = RequestMethod.GET,
+			produces = "application/json;charset=UTF-8")
+	@ResponseBody	
+	public ResponseEntity<List<Jogador>> defensores() throws Exception {
+		
+		List<Jogador> defensores = jogadorModel.getDefensores();
+			
+		return new ResponseEntity<List<Jogador>>(defensores, HttpStatus.OK);
+	}
+
+	@RequestMapping(	
+			value = "/jogador/meias",
+			method = RequestMethod.GET,
+			produces = "application/json;charset=UTF-8")
+	@ResponseBody	
+	public ResponseEntity<List<Jogador>> meias() throws Exception {
+		
+		List<Jogador> meias = jogadorModel.getMeias();
+			
+		return new ResponseEntity<List<Jogador>>(meias, HttpStatus.OK);
+	}
+
+	@RequestMapping(	
+			value = "/jogador/atacantes",
+			method = RequestMethod.GET,
+			produces = "application/json;charset=UTF-8")
+	@ResponseBody	
+	public ResponseEntity<List<Jogador>> atacantes() throws Exception {
+		
+		List<Jogador> atacantes = jogadorModel.getAtacantes();
+			
+		return new ResponseEntity<List<Jogador>>(atacantes, HttpStatus.OK);
+	}
+	
 }

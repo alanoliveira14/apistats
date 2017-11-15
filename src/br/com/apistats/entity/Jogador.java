@@ -15,6 +15,7 @@ public class Jogador {
 	private String imgPerfil;
 	private String peFavorito;
 	private String nacionalidade;
+	private String imgClube;
 	private int codClube;
 	private int codPais;
 	private int codPosicao;
@@ -115,6 +116,12 @@ public class Jogador {
 	}
 	public void setAtivo(int ativo) {
 		this.ativo = ativo;
+	}
+	public String getImgClube() {
+		return imgClube;
+	}
+	public void setImgClube(String imgClube) {
+		this.imgClube = imgClube;
 	}
 	
 }

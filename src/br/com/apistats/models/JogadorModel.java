@@ -130,7 +130,135 @@ public class JogadorModel extends GenericDAO{
 		}
 		
 	}	
+	
+    public List<Jogador> getGoleiros() throws SQLException, RegistroNaoEncontradoException {
+		
+		String sql = "select codJogador, nome, apelido, clube.alcunha, posicao.nomePosicao, pepredom, dataNascimento, altura, peso, jogador.imagem, jogador.imgPerfil, pais.pais, clube.imagem from jogador inner join posicao inner join clube inner join pais where jogador.codPais = pais.codPais and jogador.codPosicao = 1 and posicao.codPosicao = jogador.codPosicao and jogador.codClube = clube.codClube order by jogador.codPosicao asc, apelido asc;";		
+		ResultSet rs;
+		
+		rs = super.executeResultSet(sql);
+			
+		List<Jogador> goleiros = new ArrayList<Jogador>();
+		
+		while (rs.next()) {
+			Jogador jogador = new Jogador();
+			jogador.setIdJogador(rs.getInt(1));
+			jogador.setNome(rs.getString(2));
+			jogador.setNomeCamisa(rs.getString(3));
+			jogador.setClube(rs.getString(4));
+			jogador.setPosicao(rs.getString(5));
+			jogador.setPeFavorito(rs.getString(6));
+			jogador.setDataNascimento(rs.getString(7));
+			jogador.setAltura(rs.getString(8));
+			jogador.setPeso(rs.getString(9));
+			jogador.setImgOficial(rs.getString(10));
+			jogador.setImgPerfil(rs.getString(11));
+			jogador.setNacionalidade(rs.getString(12));
+			jogador.setImgClube(rs.getString(13));
+			goleiros.add(jogador);			
+		} 
+		
+		rs.close();
+		return goleiros;
+		
+	}
+
+    public List<Jogador> getDefensores() throws SQLException, RegistroNaoEncontradoException {
+		
+		String sql = "select codJogador, nome, apelido, clube.alcunha, posicao.nomePosicao, pepredom, dataNascimento, altura, peso, jogador.imagem, jogador.imgPerfil, pais.pais, clube.imagem from jogador inner join posicao inner join clube inner join pais where jogador.codPais = pais.codPais and jogador.codPosicao between 2 and 4 and posicao.codPosicao = jogador.codPosicao and jogador.codClube = clube.codClube order by jogador.codPosicao asc, apelido asc;";		
+		ResultSet rs;
+		
+		rs = super.executeResultSet(sql);
+			
+		List<Jogador> defensores = new ArrayList<Jogador>();
+		
+		while (rs.next()) {
+			Jogador jogador = new Jogador();
+			jogador.setIdJogador(rs.getInt(1));
+			jogador.setNome(rs.getString(2));
+			jogador.setNomeCamisa(rs.getString(3));
+			jogador.setClube(rs.getString(4));
+			jogador.setPosicao(rs.getString(5));
+			jogador.setPeFavorito(rs.getString(6));
+			jogador.setDataNascimento(rs.getString(7));
+			jogador.setAltura(rs.getString(8));
+			jogador.setPeso(rs.getString(9));
+			jogador.setImgOficial(rs.getString(10));
+			jogador.setImgPerfil(rs.getString(11));
+			jogador.setNacionalidade(rs.getString(12));
+			jogador.setImgClube(rs.getString(13));
+			defensores.add(jogador);			
+		} 
+		
+		rs.close();
+		return defensores;
+		
+	}
+
+public List<Jogador> getMeias() throws SQLException, RegistroNaoEncontradoException {
+		
+		String sql = "select codJogador, nome, apelido, clube.alcunha, posicao.nomePosicao, pepredom, dataNascimento, altura, peso, jogador.imagem, jogador.imgPerfil, pais.pais, clube.imagem from jogador inner join posicao inner join clube inner join pais where jogador.codPais = pais.codPais and jogador.codPosicao between 5 and 10 and posicao.codPosicao = jogador.codPosicao and jogador.codClube = clube.codClube order by jogador.codPosicao asc, apelido asc;";		
+		ResultSet rs;
+		
+		rs = super.executeResultSet(sql);
+			
+		List<Jogador> meias = new ArrayList<Jogador>();
+		
+		while (rs.next()) {
+			Jogador jogador = new Jogador();
+			jogador.setIdJogador(rs.getInt(1));
+			jogador.setNome(rs.getString(2));
+			jogador.setNomeCamisa(rs.getString(3));
+			jogador.setClube(rs.getString(4));
+			jogador.setPosicao(rs.getString(5));
+			jogador.setPeFavorito(rs.getString(6));
+			jogador.setDataNascimento(rs.getString(7));
+			jogador.setAltura(rs.getString(8));
+			jogador.setPeso(rs.getString(9));
+			jogador.setImgOficial(rs.getString(10));
+			jogador.setImgPerfil(rs.getString(11));
+			jogador.setNacionalidade(rs.getString(12));
+			jogador.setImgClube(rs.getString(13));
+			meias.add(jogador);			
+		} 
+		
+		rs.close();
+		return meias;
+		
+	}
     
+public List<Jogador> getAtacantes() throws SQLException, RegistroNaoEncontradoException {
+	
+	String sql = "select codJogador, nome, apelido, clube.alcunha, posicao.nomePosicao, pepredom, dataNascimento, altura, peso, jogador.imagem, jogador.imgPerfil, pais.pais, clube.imagem from jogador inner join posicao inner join clube inner join pais where jogador.codPais = pais.codPais and jogador.codPosicao > 10 and posicao.codPosicao = jogador.codPosicao and jogador.codClube = clube.codClube order by jogador.codPosicao asc, apelido asc;";		
+	ResultSet rs;
+	
+	rs = super.executeResultSet(sql);
+		
+	List<Jogador> atacantes = new ArrayList<Jogador>();
+	
+	while (rs.next()) {
+		Jogador jogador = new Jogador();
+		jogador.setIdJogador(rs.getInt(1));
+		jogador.setNome(rs.getString(2));
+		jogador.setNomeCamisa(rs.getString(3));
+		jogador.setClube(rs.getString(4));
+		jogador.setPosicao(rs.getString(5));
+		jogador.setPeFavorito(rs.getString(6));
+		jogador.setDataNascimento(rs.getString(7));
+		jogador.setAltura(rs.getString(8));
+		jogador.setPeso(rs.getString(9));
+		jogador.setImgOficial(rs.getString(10));
+		jogador.setImgPerfil(rs.getString(11));
+		jogador.setNacionalidade(rs.getString(12));
+		jogador.setImgClube(rs.getString(13));
+		atacantes.add(jogador);			
+	} 
+	
+	rs.close();
+	return atacantes;
+	
+}
+
 	@Override
 	public String getDefaultSelect() {
 		// TODO Auto-generated method stub
