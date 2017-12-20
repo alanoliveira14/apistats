@@ -180,3 +180,4 @@ CREATE TABLE `timeadversario` (
   `codPais` int(11) DEFAULT NULL,
   PRIMARY KEY (`codTimeAdversario`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
